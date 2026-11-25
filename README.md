@@ -2,10 +2,10 @@
 
 GodsEye یک IDS/IPS لبه‌محور و خودآموز است که با XDP/eBPF، Suricata، CNN-LSTM، ONNX Runtime و FastAPI ساخته می‌شود.
 
-## وضعیت فاز ۲
+## وضعیت فاز ۳
 
-- [x] L1 Feature Extraction
-- [x] D2 Anomaly Detection
+- [x] L2 Behavioral Analysis
+- [x] D3 Behavioral Engine
 - [x] تست‌های پایه
 
 ## اجرا
