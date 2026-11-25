@@ -1,0 +1,2 @@
+# Local rules - monitor only baseline
+alert tcp any any -> any any (msg:"GODSEYE baseline alert"; sid:1000001; rev:1;)

@@ -1,0 +1,11 @@
+outputs:
+  - eve-log:
+      types:
+        - alert
+        - http
+        - dns
+        - tls
+        - flow
+
+logging:
+  default-log-level: info
