@@ -28,6 +28,7 @@ GodsEye یک IDS/IPS لبه‌محور و خودآموز است که با XDP/eB
 - [x] D11 Monitoring/Feedback Engine
 - [x] تست‌های پایه
 - [x] اعتبارسنجی ورودی
+- [x] تست یکپارچگی ساختار
 
 ## اجرا
 
