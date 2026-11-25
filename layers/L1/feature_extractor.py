@@ -2,6 +2,8 @@ from typing import Any, Dict, List
 
 class FeatureExtractor:
     def extract(self, event: Dict[str, Any]) -> List[float]:
+        if not isinstance(event, dict):
+            raise ValueError("event must be a dict")
         features = []
         features.append(1.0 if event.get("protocol") == "tcp" else 0.0)
         features.append(1.0 if event.get("protocol") == "udp" else 0.0)

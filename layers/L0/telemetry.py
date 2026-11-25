@@ -11,4 +11,6 @@ class TelemetryEvent:
 
 class TelemetryCollector:
     def collect(self, raw: Dict[str, Any]) -> TelemetryEvent:
+        if not isinstance(raw, dict):
+            raise ValueError("raw must be a dict")
         return TelemetryEvent(raw=raw)

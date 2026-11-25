@@ -1,3 +1,4 @@
+import pytest
 from layers.L0.telemetry import TelemetryCollector
 from layers.L0.normalizer import Normalizer
 
@@ -8,3 +9,8 @@ def test_normalize_event():
     normalized = normalizer.normalize(event)
     assert normalized["protocol"] == "tcp"
     assert normalized["src_ip"] == "1.1.1.1"
+
+def test_invalid_raw():
+    collector = TelemetryCollector()
+    with pytest.raises(ValueError):
+        collector.collect("invalid")

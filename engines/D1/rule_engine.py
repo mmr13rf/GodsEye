@@ -6,9 +6,14 @@ class RuleEngine:
         base = os.path.dirname(__file__)
         self.rules_path = rules_path or os.path.join(base, "rules.yaml")
         with open(self.rules_path) as f:
-            self.rules = yaml.safe_load(f)["rules"]
+            data = yaml.safe_load(f)
+        if not isinstance(data, dict) or "rules" not in data:
+            raise ValueError("invalid rules file")
+        self.rules = data["rules"]
 
     def evaluate(self, event: Dict[str, Any]) -> List[Dict[str, Any]]:
+        if not isinstance(event, dict):
+            raise ValueError("event must be a dict")
         hits = []
         for rule in self.rules:
             if self._match(rule, event):

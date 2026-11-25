@@ -4,6 +4,9 @@ from .telemetry import TelemetryEvent
 class Normalizer:
     def normalize(self, event: TelemetryEvent) -> Dict[str, Any]:
         raw = event.raw
+        protocol = str(raw.get("protocol", "unknown")).lower()
+        if protocol not in ["tcp", "udp", "icmp", "unknown"]:
+            protocol = "unknown"
         return {
             "event_id": event.event_id,
             "timestamp": event.timestamp,
@@ -13,7 +16,7 @@ class Normalizer:
             "src_port": raw.get("src_port"),
             "dest_ip": raw.get("dest_ip"),
             "dest_port": raw.get("dest_port"),
-            "protocol": raw.get("protocol", "unknown").lower(),
+            "protocol": protocol,
             "alert": raw.get("alert", {}),
             "flow": raw.get("flow", {}),
             "http": raw.get("http", {}),

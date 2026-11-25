@@ -1,3 +1,4 @@
+import pytest
 from layers.L1.feature_extractor import FeatureExtractor
 
 def test_extract_features():
@@ -6,3 +7,8 @@ def test_extract_features():
     features = extractor.extract(event)
     assert features[0] == 1.0
     assert features[3] == 22.0
+
+def test_invalid_event():
+    extractor = FeatureExtractor()
+    with pytest.raises(ValueError):
+        extractor.extract("invalid")
