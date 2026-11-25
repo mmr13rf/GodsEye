@@ -1,18 +1,21 @@
-from typing import Any, Dict, List
+from typing import Any, Dict, Optional
+
 
 class OnnxInference:
-    def __init__(self, input_size: int = 10):
-        if not isinstance(input_size, int) or input_size <= 0:
-            raise ValueError("input_size must be a positive int")
-        self.input_size = input_size
+    """Optional ONNX inference component. Requires a valid ONNX model."""
 
-    def infer(self, features: List[float]) -> Dict[str, Any]:
-        if not isinstance(features, list):
-            raise ValueError("features must be a list")
-        if len(features) != self.input_size:
-            raise ValueError(f"features must have length {self.input_size}")
-        for f in features:
-            if not isinstance(f, (int, float)):
-                raise ValueError("each feature must be a number")
-        score = sum(features) / len(features)
-        return {"score": score}
+    def __init__(self, model_path: Optional[str] = None):
+        self.model_path = model_path
+        self.available = False
+        try:
+            import onnxruntime
+            self.available = True
+        except Exception:
+            self.available = False
+
+    def infer(self, event: Dict[str, Any]) -> Dict[str, Any]:
+        if not self.available:
+            return {"available": False, "score": 0.0, "action": "monitor"}
+        if not self.model_path:
+            return {"available": True, "model": False, "score": 0.0, "action": "monitor"}
+        raise RuntimeError("ONNX inference requires a valid ONNX model and validation")

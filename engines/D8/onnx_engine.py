@@ -1,16 +1,12 @@
-from typing import Any, Dict
+from typing import Any, Dict, Optional
+from layers.L7.onnx_inference import OnnxInference
+
 
 class OnnxEngine:
-    def __init__(self, threshold: float = 0.5):
-        if not isinstance(threshold, (int, float)) or not (0 <= threshold <= 1):
-            raise ValueError("threshold must be between 0 and 1")
-        self.threshold = float(threshold)
+    """Optional ONNX engine. Falls back safely when unavailable."""
 
-    def evaluate(self, inference: Dict[str, Any]) -> Dict[str, Any]:
-        if not isinstance(inference, dict):
-            raise ValueError("inference must be a dict")
-        score = inference.get("score", 0.0)
-        if not isinstance(score, (int, float)) or not (0 <= score <= 1):
-            raise ValueError("score must be between 0 and 1")
-        is_threat = score >= self.threshold
-        return {"is_threat": is_threat, "severity": "high" if is_threat else "low"}
+    def __init__(self, model_path: Optional[str] = None):
+        self.inference = OnnxInference(model_path=model_path)
+
+    def run(self, event: Dict[str, Any]) -> Dict[str, Any]:
+        return self.inference.infer(event)
