@@ -7,9 +7,11 @@ GodsEye یک IDS/IPS لبه‌محور و خودآموز است که با XDP/eB
 - [x] L0 Telemetry & Normalization
 - [x] L1 Feature Extraction
 - [x] L2 Behavioral Analysis
+- [x] L3 Threat Intelligence
 - [x] D1 Rule Engine
 - [x] D2 Anomaly Detection
 - [x] D3 Behavioral Engine
+- [x] D4 Threat Intel Engine
 - [x] تست‌های پایه
 - [x] اعتبارسنجی ورودی
 
