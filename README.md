@@ -11,6 +11,7 @@ GodsEye یک IDS/IPS لبه‌محور و خودآموز است که با XDP/eB
 - [x] L4 DNS/TLS Analysis
 - [x] L5 WAF Analysis
 - [x] L6 CNN-LSTM Analysis
+- [x] L7 ONNX Inference
 - [x] D1 Rule Engine
 - [x] D2 Anomaly Detection
 - [x] D3 Behavioral Engine
@@ -18,6 +19,7 @@ GodsEye یک IDS/IPS لبه‌محور و خودآموز است که با XDP/eB
 - [x] D5 DNS/TLS Engine
 - [x] D6 WAF Engine
 - [x] D7 CNN-LSTM Engine
+- [x] D8 ONNX Engine
 - [x] تست‌های پایه
 - [x] اعتبارسنجی ورودی
 
